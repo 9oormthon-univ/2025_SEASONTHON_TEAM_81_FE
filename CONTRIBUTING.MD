@@ -18,9 +18,11 @@
 ### ✅ 브랜치 작업 흐름
 
 ```mermaid
-graph TD;
-  FEAT[기능 브랜치 (feat/*)] --> DEV[dev 브랜치];
-  DEV --> MAIN[main 브랜치];
+graph TD
+  INIT[초기화] --> DEV[dev]
+  DEV --> FEATURE_BRANCH(기능 브랜치)
+  FEATURE_BRANCH --> DEV
+  DEV --> MAIN[main]
 ```
 
 ---
@@ -54,6 +56,7 @@ graph TD;
 - **컴포넌트명**: PascalCase (`function UserCard()`)
 - **Props 인터페이스명**: `컴포넌트명Props` (`UserCardProps`)
 - **기능 단위로 폴더로 묶기**
+
   ```bash
   /user-card
     user-card.tsx
@@ -70,6 +73,7 @@ graph TD;
 - **탭 너비**: 2 spaces
 - **문자열**: 따옴표는 `'single quotes'`
 - **import 순서**:
+
   ```
   1. 외부 라이브러리
   2. 절대경로 import (@로 시작 등)
