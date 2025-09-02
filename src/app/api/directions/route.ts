@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(req: NextRequest) {
   const query = req.nextUrl.searchParams.toString();
-  let api_url = `https://maps.apigw.ntruss.com/map-direction/v1/driving?${query}`;
+  const api_url = `https://maps.apigw.ntruss.com/map-direction/v1/driving?${query}`;
 
   const header = {
     'x-ncp-apigw-api-key-id': process.env.NEXT_PUBLIC_NAVER_CLIENT_ID || '',

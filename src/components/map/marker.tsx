@@ -4,9 +4,7 @@ interface MarkerProps {
 }
 
 const Marker = ({ position, map }: MarkerProps) => {
-  let _marker: naver.maps.Marker;
-
-  _marker = new naver.maps.Marker({
+  const _marker = new naver.maps.Marker({
     position: position,
     map: map,
     //https://navermaps.github.io/maps.js.ncp/docs/naver.maps.Marker.html#~ImageIcon icon props 설명 문서
