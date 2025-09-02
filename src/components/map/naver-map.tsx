@@ -4,6 +4,7 @@ import useWatchLocation from '@/hooks/useWatchLocation';
 import { geolocationOptions } from '@/lib/geolocationOption';
 import Script from 'next/script';
 import { useEffect, useRef, useState } from 'react';
+import PolyLine from './poly-line';
 
 const NaverMap = () => {
   const { location } = useWatchLocation({ options: geolocationOptions });
@@ -16,6 +17,7 @@ const NaverMap = () => {
 
   const mapRef = useRef<naver.maps.Map | null>(null);
   const markerRef = useRef<naver.maps.Marker | null>(null);
+  const polylineRef = useRef<naver.maps.Polyline | null>(null);
 
   //location 변화시 감지하여 usercoords변화시키기 (거리 기준을 좀 널널하게 둬서 잦은 랜더링을 방지해야하나)
   useEffect(() => {
@@ -48,6 +50,31 @@ const NaverMap = () => {
     markerRef.current = new naver.maps.Marker({
       position: new naver.maps.LatLng(usercoords.lat, usercoords.lng),
       map: mapRef.current,
+    });
+
+    // Polyline 생성
+    polylineRef.current = PolyLine({
+      map: mapRef.current,
+      path: [
+        [126.8323029, 37.6346515],
+        [126.8320124, 37.6346832],
+        [126.8310434, 37.6348129],
+        [126.8308902, 37.6348319],
+        [126.8307393, 37.63485],
+        [126.8290281, 37.6350818],
+        [126.8289294, 37.635093],
+        [126.8279481, 37.6351964],
+        [126.8273228, 37.6352821],
+        [126.8271697, 37.6353002],
+        [126.8260419, 37.635437],
+        [126.8258479, 37.6354549],
+        [126.8255508, 37.6348475],
+        [126.8252136, 37.6341587],
+        [126.8248564, 37.6334311],
+        [126.8248219, 37.6333597],
+        [126.8248052, 37.6333199],
+        [126.8247719, 37.6332431],
+      ],
     });
 
     naver.maps.Event.addListener(mapRef.current, 'click', () => {
