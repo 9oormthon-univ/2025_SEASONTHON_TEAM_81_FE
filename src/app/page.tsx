@@ -1,7 +1,6 @@
 'use client';
 
 import AppFooter from '@/components/layout/app-footer';
-import useDirections from '@/hooks/useDirections';
 import Link from 'next/link';
 
 const HomePage = () => {
