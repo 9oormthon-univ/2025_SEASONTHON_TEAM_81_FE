@@ -42,79 +42,79 @@
 .body1 {
   font-size: var(--font-xl);
   font-weight: 700;
-  line-height: var(--lineheight-lg);
+  line-height: auto;
 }
 
 .body2 {
   font-size: var(--font-xl);
   font-weight: 500;
-  line-height: var(--lineheight-lg);
+  line-height: auto;
 }
 
 .body3 {
   font-size: var(--font-xl);
   font-weight: 400;
-  line-height: var(--lineheight-lg);
+  line-height: auto;
 }
 
 .body4 {
   font-size: var(--font-lg);
   font-weight: 700;
-  line-height: var(--lineheight-lg);
+  line-height: auto;
 }
 
 .body5 {
   font-size: var(--font-lg);
   font-weight: 500;
-  line-height: var(--lineheight-lg);
+  line-height: auto;
 }
 
 .body6 {
   font-size: var(--font-lg);
   font-weight: 400;
-  line-height: var(--lineheight-lg);
+  line-height: auto;
 }
 
 .label1 {
   font-size: var(--font-base);
   font-weight: 700;
-  line-height: var(--lineheight-lg);
+  line-height: auto;
 }
 
 .label2 {
   font-size: var(--font-base);
   font-weight: 500;
-  line-height: var(--lineheight-lg);
+  line-height: auto;
 }
 
 .label3 {
   font-size: var(--font-base);
   font-weight: 400;
-  line-height: var(--lineheight-lg);
+  line-height: auto;
 }
 
 .label4 {
   font-size: var(--font-sm);
   font-weight: 500;
-  line-height: var(--lineheight-lg);
+  line-height: auto;
 }
 
 .label5 {
   font-size: var(--font-sm);
   font-weight: 400;
-  line-height: var(--lineheight-lg);
+  line-height: auto;
 }
 
 .label6 {
   font-size: var(--font-xs);
   font-weight: 700;
-  line-height: var(--lineheight-lg);
+  line-height: auto;
 }
 
 .label7 {
   font-size: var(--font-xs);
   font-weight: 500;
-  line-height: var(--lineheight-lg);
+  line-height: auto;
 }
 
 .footer {
