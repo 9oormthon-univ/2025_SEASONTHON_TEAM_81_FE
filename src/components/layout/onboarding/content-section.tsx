@@ -44,7 +44,7 @@ const ContentList = {
         닉네임은 언제든지 바꿀 수 있어요
       </p>
       <input
-        className="w-full h-13 rounded-lg bg-white border border-[#888888] border-solid placeholder:text-[#CCCCCC] placeholder:t3 placeholder:px-4"
+        className="w-full py-3 px-2 rounded-lg bg-white border border-[#888888] border-solid placeholder:text-[#CCCCCC] placeholder:t3"
         placeholder="닉네임을 입력해주세요"
       />
     </div>
