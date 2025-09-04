@@ -1,0 +1,86 @@
+---
+openapi: 3.1.0
+info:
+  title: MindWalk 프로젝트 API 문서
+  description: MindWalk 프로젝트 API 문서입니다.
+  license:
+    name: MindWalk
+    url: https://github.com/9oormthon-univ/2025_SEASONTHON_TEAM_81_BE
+  version: v0.0.1
+servers:
+  - url: http://localhost:8080
+    description: MindWalk 프로젝트 API 문서입니다.
+security:
+  - accessToken: []
+tags:
+  - name: '[1. 인증]'
+    description: 인증 관련 API
+paths:
+  '/api/auth/login':
+    post:
+      tags:
+        - '[1. 인증]'
+      summary: 카카오 로그인
+      description: 카카오 소셜 로그인을 통해 사용자를 인증하고, 신규 사용자인 경우 자동으로 가입 처리 후 토큰을 발급합니다.
+      operationId: login
+      requestBody:
+        content:
+          application/json;charset=UTF-8:
+            schema:
+              '$ref': '#/components/schemas/AuthRequest'
+        required: true
+      responses:
+        '200':
+          description: 로그인 성공 및 토큰 발급
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                '$ref': '#/components/schemas/AuthResponse'
+        '400':
+          description: 요청 본문이 비어있거나 oauthId가 유효하지 않은 경우
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                '$ref': '#/components/schemas/BaseResponse'
+        '500':
+          description: 서버 내부 오류
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                '$ref': '#/components/schemas/BaseResponse'
+components:
+  schemas:
+    AuthRequest:
+      properties:
+        oauthId:
+          type: integer
+          format: int64
+      required:
+        - oauthId
+    AuthResponse:
+      properties:
+        userId:
+          type: integer
+          format: int64
+        accessToken:
+          type: string
+        refreshToken:
+          type: string
+    BaseResponse:
+      properties:
+        isSuccess:
+          type: boolean
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          type: object
+  securitySchemes:
+    accessToken:
+      type: http
+      name: Authorization
+      in: header
+      scheme: bearer
+      bearerFormat: JWT

@@ -1,0 +1,14 @@
+{
+  "$schema": "https://raw.githubusercontent.com/OpenAPITools/openapi-generator-cli/refs/heads/master/apps/generator-cli/src/config.schema.json",
+  "spaces": 2,
+  "generator-cli": {
+    "version": "7.14.0",
+    "generators": {
+      "v1.0":{
+        "generatorName":"typescript-fetch",
+        "inputSpec": "./src/lib/api-mindwalk.yaml",
+        "output": "./src/lib/api"
+      }
+    }
+  }
+}
