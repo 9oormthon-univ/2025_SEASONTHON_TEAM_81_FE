@@ -8,12 +8,12 @@ import PolyLine from './poly-line';
 
 const NaverMap = () => {
   const { location } = useWatchLocation({ options: geolocationOptions });
-  console.log('now location', location);
 
   const [usercoords, setUserCoords] = useState<{ lat: number; lng: number }>({
-    lat: 37.3595704,
-    lng: 127.105399,
+    lat: location?.lat || 37.3595704,
+    lng: location?.lng || 127.105399,
   });
+  const userPath = useRef<Array<[number, number]>>([]);
 
   const mapRef = useRef<naver.maps.Map | null>(null);
   const markerRef = useRef<naver.maps.Marker | null>(null);
@@ -31,13 +31,18 @@ const NaverMap = () => {
     }
   }, [location]);
 
-  //usercoord가 변화되면 그에맞게 marker를 옮겨줌
+  //usercoord가 변화되면 그에맞게 marker, polyline변화시키기
   useEffect(() => {
+    userPath.current = [...userPath.current, [usercoords.lng, usercoords.lat]];
+
     if (markerRef.current) {
       markerRef.current.setPosition(
         new naver.maps.LatLng(usercoords.lat, usercoords.lng)
       );
-      console.log('Marker position updated:', usercoords);
+    }
+
+    if (polylineRef.current) {
+      polylineRef.current.setPath(userPath.current.slice(1)); //처음 좌표는 제외 -> loacation 로딩중에 찍힌 초기값이 들어감
     }
   }, [usercoords]);
 
@@ -52,40 +57,18 @@ const NaverMap = () => {
       map: mapRef.current,
     });
 
-    // Polyline 생성
     polylineRef.current = PolyLine({
       map: mapRef.current,
-      path: [
-        [126.8323029, 37.6346515],
-        [126.8320124, 37.6346832],
-        [126.8310434, 37.6348129],
-        [126.8308902, 37.6348319],
-        [126.8307393, 37.63485],
-        [126.8290281, 37.6350818],
-        [126.8289294, 37.635093],
-        [126.8279481, 37.6351964],
-        [126.8273228, 37.6352821],
-        [126.8271697, 37.6353002],
-        [126.8260419, 37.635437],
-        [126.8258479, 37.6354549],
-        [126.8255508, 37.6348475],
-        [126.8252136, 37.6341587],
-        [126.8248564, 37.6334311],
-        [126.8248219, 37.6333597],
-        [126.8248052, 37.6333199],
-        [126.8247719, 37.6332431],
-      ],
+      path: userPath.current,
     });
 
-    naver.maps.Event.addListener(mapRef.current, 'click', () => {
-      //이유는 모르겠지만 y가 lat, x가 lng
-      setUserCoords({
-        lat: markerRef.current?.getPosition().y || usercoords.lat,
-        lng: (markerRef.current?.getPosition().x || usercoords.lng) + 0.001,
-      });
-      console.log('Map clicked, updated coords:', usercoords);
-      console.log('log marker position:', markerRef.current?.getPosition());
-    });
+    // naver.maps.Event.addListener(mapRef.current, 'click', () => {
+    //   //이유는 모르겠지만 y가 lat, x가 lng
+    //   setUserCoords({
+    //     lat: markerRef.current?.getPosition().y || usercoords.lat,
+    //     lng: (markerRef.current?.getPosition().x || usercoords.lng) + 0.001,
+    //   });
+    // });
   };
 
   return (
