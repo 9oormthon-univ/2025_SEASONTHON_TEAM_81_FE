@@ -1,27 +1,44 @@
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
 const AppFooter = () => {
+  const pathname = usePathname();
+  const [content, setContent] = useState('');
+
+  useEffect(() => {
+    setContent(pathname);
+  }, [pathname]);
+
   return (
     <div className="w-full h-auto pt-2 pb-10 grid grid-cols-4 footer">
       <MenuItems
         text="홈"
-        link="/"
-        image="/icon/home.svg"
+        link="/home"
+        image={
+          content === '/home' ? '/icon/home_primary.svg' : '/icon/home.svg'
+        }
         width={22}
         height={22}
       />
       <MenuItems
         text="마음산책"
-        link="/map"
-        image="/icon/foot.svg"
+        link="/walking"
+        image={
+          content === '/walking' ? '/icon/foot_primary.svg' : '/icon/foot.svg'
+        }
         width={20}
         height={26}
       />
       <MenuItems
         text="마음정원"
         link="/"
-        image="/icon/flower.svg"
+        image={
+          content === '/' ? '/icon/flower_primary.svg' : '/icon/flower.svg'
+        }
         width={20}
         height={24}
       />
