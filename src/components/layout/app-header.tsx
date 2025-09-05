@@ -6,7 +6,7 @@ interface AppHeaderProps {
 
 const AppHeader = ({ content }: AppHeaderProps) => {
   return (
-    <div className="w-full h-8 px-4 mt-12 z-1 flex flex-row justify-between">
+    <div className="w-full h-8 px-4 mt-8 z-1 flex flex-row justify-between absolute top-0">
       <Image
         src="/icon/logo_header.svg"
         width={120}
