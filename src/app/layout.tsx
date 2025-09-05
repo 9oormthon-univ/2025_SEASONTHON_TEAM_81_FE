@@ -1,23 +1,19 @@
 import type { Metadata } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
+import localFont from 'next/font/local';
 import './globals.css';
 import AuthSessionProvider from '@/components/provider/session-provider';
-
-const geistSans = Geist({
-  variable: '--font-geist-sans',
-  subsets: ['latin'],
-});
-
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
-  subsets: ['latin'],
-});
 
 export const metadata: Metadata = {
   title: '마음 산책',
   description:
     '감정 시각화와 산책 행동으로 감정을 다루는 AI 기반 멘탈 헬스 서비스',
 };
+
+const pretendard = localFont({
+  src: './fonts/PretendardVariable.ttf',
+  display: 'swap',
+  weight: '45 920',
+});
 
 export default function RootLayout({
   children,
@@ -26,9 +22,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased w-full h-screen`}
-      >
+      <body className="antialiased w-full h-screen">
         <AuthSessionProvider>{children}</AuthSessionProvider>
       </body>
     </html>

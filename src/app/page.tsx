@@ -1,6 +1,7 @@
 'use client';
 
 import AppFooter from '@/components/layout/app-footer';
+import PageControl from '@/components/ui/page-control';
 import Link from 'next/link';
 
 const HomePage = () => {
@@ -32,6 +33,10 @@ const HomePage = () => {
         경로 호출하기
       </button>
       <AppFooter />
+      <PageControl
+        total={5}
+        current={2}
+      />
     </>
   );
 };
