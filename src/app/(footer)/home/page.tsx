@@ -1,7 +1,8 @@
 import AppHeader from '@/components/layout/app-header';
-import WalkingSection from '@/components/layout/home/walking-section';
+import HomeWalkingSection from '@/components/layout/home/home-walking-section';
 import GrowBarGraph from '@/components/ui/grow-bar-graph';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const HeaderContent = () => {
   return (
@@ -25,7 +26,7 @@ const HomePage = () => {
   return (
     <div className="w-full h-full flex flex-col">
       <div
-        className="w-full flex flex-col grow-4 pb-4"
+        className="w-full flex flex-col grow-4 pt-16 pb-4 relative"
         style={gradientStyle}
       >
         <AppHeader content={<HeaderContent />} />
@@ -57,7 +58,7 @@ const HomePage = () => {
       </div>
       <div className="px-4 pt-3 grow-5 flex flex-col gap-4 bg-blue-100">
         <p className="t3">가은님, 오늘은 가볍게 걸어볼까요?</p>
-        <WalkingSection />
+        <HomeWalkingSection />
       </div>
     </div>
   );

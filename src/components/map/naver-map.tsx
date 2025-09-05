@@ -49,7 +49,7 @@ const NaverMap = () => {
   const initializeMap = () => {
     mapRef.current = new naver.maps.Map('basic_map', {
       center: new naver.maps.LatLng(usercoords.lat, usercoords.lng),
-      zoom: 15,
+      zoom: 17,
     });
 
     markerRef.current = new naver.maps.Marker({
