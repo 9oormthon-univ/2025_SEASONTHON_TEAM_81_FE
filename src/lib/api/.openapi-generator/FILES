@@ -1,0 +1,9 @@
+.openapi-generator-ignore
+apis/Class1Api.ts
+apis/index.ts
+index.ts
+models/AuthRequest.ts
+models/AuthResponse.ts
+models/BaseResponse.ts
+models/index.ts
+runtime.ts

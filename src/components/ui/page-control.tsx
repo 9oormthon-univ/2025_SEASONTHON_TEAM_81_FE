@@ -5,7 +5,7 @@ interface PageControlProps {
 
 const PageControl = ({ total, current }: PageControlProps) => {
   const dots = Array.from({ length: total }, (_, i) => {
-    const isActive = i === current;
+    const isActive = i === current - 1;
 
     return (
       <div

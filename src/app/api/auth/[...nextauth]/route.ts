@@ -22,8 +22,8 @@ const handler = NextAuth({
     },
     async session({ session, token }: { session: Session; token: JWT }) {
       if (token && session.user) {
-        //일단 name  속성 사용안하니까 name에 id값 저장
-        session.user.name = token.sub as string;
+        //일단 email  속성 사용안하니까 name에 id값 저장
+        session.user.email = token.sub as string;
       }
       return session;
     },
