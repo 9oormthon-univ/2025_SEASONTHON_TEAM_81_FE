@@ -3,6 +3,9 @@
 import AppHeader from '@/components/layout/app-header';
 import HomeWalkingSection from '@/components/layout/home/home-walking-section';
 import GrowBarGraph from '@/components/ui/grow-bar-graph';
+import NiceModal from '@/components/ui/modal/nice-modal';
+import StretchingModal from '@/components/ui/modal/stretching-modal';
+import useModalStore from '@/store/useModalStore';
 import useUserStore from '@/store/useUserStore';
 import Image from 'next/image';
 
@@ -26,6 +29,7 @@ const HomePage = () => {
   };
 
   const { name } = useUserStore();
+  const { openModal } = useModalStore();
 
   return (
     <div className="w-full h-full flex flex-col">
@@ -41,6 +45,7 @@ const HomePage = () => {
               alt="user"
               width={20}
               height={20}
+              onClick={() => openModal(<StretchingModal />)}
             />
           </div>
           <div className="flex flex-col">
