@@ -1,4 +1,3 @@
-import calculatePercentage from '@/lib/percentage';
 import Image from 'next/image';
 
 interface GrowBarGraphProps {
@@ -6,7 +5,7 @@ interface GrowBarGraphProps {
 }
 
 const GrowBarGraph = ({ grow }: GrowBarGraphProps) => {
-  const growPercentage = calculatePercentage(150, grow);
+  const growPercentage = Math.floor((grow / 150) * 100);
 
   return (
     <div className="absolute bottom-0 left-[1.5rem] flex flex-col items-center justify-center">
