@@ -9,6 +9,7 @@ import NiceModal from '@/components/ui/modal/nice-modal';
 import StretchingModal from '@/components/ui/modal/stretching-modal';
 import { useTimer } from '@/hooks/useTimer';
 import useModalStore from '@/store/useModalStore';
+import useTokenStore from '@/store/useTokenStore';
 import useWalkingStore from '@/store/useWalkingStore';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -117,9 +118,10 @@ const WalkingPage = () => {
 
   const { walkTime, missions } = useWalkingStore();
   const { openModal } = useModalStore();
+  const { token } = useTokenStore();
 
   //지나간 시간을 초단위로, 뒤 props에는 시간이 지났을때 실행할 함수
-  const { timeLeft, setIsRunning } = useTimer(20, () => {
+  const { timeLeft, setIsRunning } = useTimer(walkTime, () => {
     console.log('타이머 종료');
     return;
   });
@@ -157,7 +159,7 @@ const WalkingPage = () => {
 
   //타이머가 변함을 useState로 progress로 저장
   useEffect(() => {
-    setProgress(Math.floor((timeLeft / 20) * 100));
+    setProgress(Math.floor((timeLeft / walkTime) * 100));
   }, [timeLeft]);
 
   //activate가 변함을 감지하여 타이머 시작/멈춤
@@ -166,6 +168,35 @@ const WalkingPage = () => {
     setStart(true);
     handleRunning(activate);
   }, [activate]);
+
+  useEffect(() => {
+    if (end) {
+      const postWalking = async () => {
+        try {
+          const response = await fetch(
+            'https://api.mindwalk.p-e.kr/api/missions//complete',
+            {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${token}`,
+              },
+              body: JSON.stringify({
+                steps: 0,
+                distanceMeters: 0,
+                actualDurationMinutes: walkTime / 60,
+              }),
+            }
+          );
+          const data = await response.json();
+          console.log('Post Walking Data:', data);
+        } catch (error) {
+          console.error('Error:', error);
+        }
+      };
+      postWalking();
+    }
+  }, [end]);
 
   //처음 진입시 사용자 위치 받아서 header에 뿌려주기
   useEffect(() => {
