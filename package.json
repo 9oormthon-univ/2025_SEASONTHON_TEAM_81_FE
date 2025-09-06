@@ -26,7 +26,9 @@
     "eslint-config-next": "15.5.2",
     "next-auth": "^4.24.11",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "typescript": "^5",
+    "zustand": "^5.0.8",
+    "zustand-persist": "^0.4.0"
   },
   "packageManager": "yarn@4.9.3+sha512.8295ee814f6b253e16f516416481b481a215ed03ef1ae38524d108084872560a9ed75aeb23b91ab64222062ac4149a594150ae538c2a9536fdbcefd4e49b11cc"
 }

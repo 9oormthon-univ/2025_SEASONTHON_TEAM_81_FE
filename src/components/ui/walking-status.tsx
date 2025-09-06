@@ -1,7 +1,7 @@
 import Image from 'next/image';
 
 interface WalkingStatusProps {
-  status?: string;
+  status?: number;
   missions?: Array<string>;
 }
 
@@ -41,30 +41,30 @@ const Mission = ({ text, enabled = false }: MissionProps) => {
 const WalkingStatus = ({ status, missions }: WalkingStatusProps) => {
   return (
     <div className="flex flex-col gap-[0.15rem]">
-      <div className="flex flex-row gap-[0.625rem]">
+      <div className="flex flex-row gap-[0.625rem] items-center">
         <Image
           src="/icon/arrow.svg"
           alt="arrow"
-          width={10}
-          height={8}
+          width={20}
+          height={20}
         />
         {missions &&
           missions.map((mission, index) => (
             <Mission
               key={index}
               text={mission}
-              enabled={status === mission}
+              enabled={status === index}
             />
           ))}
         <Image
           src="/icon/flag.svg"
           alt="flag"
-          width={7}
-          height={14}
+          width={20}
+          height={20}
           className="ml-1"
         />
       </div>
-      <p className="text-[#668666] label6 flex flex-row px-3 justify-between">
+      <p className="text-[#668666] label6 flex flex-row px-6 justify-between">
         {missions?.map((mission) => (
           <span
             key={mission}
