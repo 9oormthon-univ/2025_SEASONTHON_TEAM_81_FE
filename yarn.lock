@@ -3766,6 +3766,7 @@ __metadata:
     next: "npm:15.5.2"
     next-auth: "npm:^4.24.11"
     react: "npm:19.1.0"
+    react-countdown-circle-timer: "npm:^3.2.1"
     react-dom: "npm:19.1.0"
     tailwindcss: "npm:^4"
     typescript: "npm:^5"
@@ -4371,6 +4372,15 @@ __metadata:
   version: 1.2.3
   resolution: "queue-microtask@npm:1.2.3"
   checksum: 10c0/900a93d3cdae3acd7d16f642c29a642aea32c2026446151f0778c62ac089d4b8e6c986811076e1ae180a694cedf077d453a11b58ff0a865629a4f82ab558e102
+  languageName: node
+  linkType: hard
+
+"react-countdown-circle-timer@npm:^3.2.1":
+  version: 3.2.1
+  resolution: "react-countdown-circle-timer@npm:3.2.1"
+  peerDependencies:
+    react: ">=16.8.0"
+  checksum: 10c0/4e2e7c6a03ab4cc244efd4f603b64da43fb86662823b58ea23ed5a247dd6b1586bfeb4cf1ca0181eec51ea640c37504688aedd7f888ae69f757cf4c7edb77c0a
   languageName: node
   linkType: hard
 
