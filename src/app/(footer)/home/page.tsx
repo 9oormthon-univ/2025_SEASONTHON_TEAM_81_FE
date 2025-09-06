@@ -111,7 +111,7 @@ const HomePage = () => {
               headers: {
                 'Content-Type': 'application/json',
               },
-              body: JSON.stringify({ oauthId: session?.user?.name || '' }),
+              body: JSON.stringify({ oauthId: session?.user?.email || '' }),
             }
           );
 
