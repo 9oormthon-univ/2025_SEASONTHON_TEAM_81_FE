@@ -121,7 +121,7 @@ const WalkingPage = () => {
   const { token } = useTokenStore();
 
   //지나간 시간을 초단위로, 뒤 props에는 시간이 지났을때 실행할 함수
-  const { timeLeft, setIsRunning } = useTimer(walkTime, () => {
+  const { timeLeft, setIsRunning } = useTimer(20, () => {
     console.log('타이머 종료');
     return;
   });
@@ -159,7 +159,7 @@ const WalkingPage = () => {
 
   //타이머가 변함을 useState로 progress로 저장
   useEffect(() => {
-    setProgress(Math.floor((timeLeft / walkTime) * 100));
+    setProgress(Math.floor((timeLeft / 20) * 100));
   }, [timeLeft]);
 
   //activate가 변함을 감지하여 타이머 시작/멈춤
@@ -174,7 +174,7 @@ const WalkingPage = () => {
       const postWalking = async () => {
         try {
           const response = await fetch(
-            'https://api.mindwalk.p-e.kr/api/missions//complete',
+            'https://api.mindwalk.p-e.kr/api/missions/complete',
             {
               method: 'POST',
               headers: {
