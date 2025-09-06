@@ -124,14 +124,12 @@ const WalkingPage = () => {
   const calculStatus = () => {
     const totalMissions = missions.length - 1;
     const completedMissions = Math.floor((progress / 100) * totalMissions);
-    console.log('status', completedMissions);
     return completedMissions;
   };
 
   //타이머가 변함을 useState로 progress로 저장
   useEffect(() => {
     setProgress(Math.floor((timeLeft / walkTime) * 100));
-    console.log('progress', progress);
   }, [timeLeft]);
 
   //activate가 변함을 감지하여 타이머 시작/멈춤

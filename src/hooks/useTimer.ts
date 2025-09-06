@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 export function useTimer(limitTime: number, onFinish?: () => void) {
   const [timeLeft, setTimeLeft] = useState(0);
   const [isRunning, setIsRunning] = useState(false);
-  console.log('timeleft', timeLeft, 'isrunning', isRunning);
 
   useEffect(() => {
     if (!isRunning || timeLeft >= limitTime) {

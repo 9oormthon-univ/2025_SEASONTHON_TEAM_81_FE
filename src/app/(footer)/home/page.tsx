@@ -1,8 +1,10 @@
+'use client';
+
 import AppHeader from '@/components/layout/app-header';
 import HomeWalkingSection from '@/components/layout/home/home-walking-section';
 import GrowBarGraph from '@/components/ui/grow-bar-graph';
+import useUserStore from '@/store/useUserStore';
 import Image from 'next/image';
-import Link from 'next/link';
 
 const HeaderContent = () => {
   return (
@@ -23,6 +25,8 @@ const HomePage = () => {
       'linear-gradient(180deg, rgba(245, 248, 246, 0.30) 29.33%, rgba(95, 185, 77, 0.30) 100%)',
   };
 
+  const { name } = useUserStore();
+
   return (
     <div className="w-full h-full flex flex-col">
       <div
@@ -34,7 +38,7 @@ const HomePage = () => {
           <div>icon</div>
           <div className="flex flex-col">
             <p className="t2 text-[#414141]">
-              가은님의 4번째 식물,
+              {name}님의 4번째 식물,
               <br />
               해바라기
             </p>
@@ -57,7 +61,7 @@ const HomePage = () => {
         </div>
       </div>
       <div className="px-4 pt-3 grow-5 flex flex-col gap-4 bg-blue-100">
-        <p className="t3">가은님, 오늘은 가볍게 걸어볼까요?</p>
+        <p className="t3">{name}님, 오늘은 가볍게 걸어볼까요?</p>
         <HomeWalkingSection />
       </div>
     </div>
