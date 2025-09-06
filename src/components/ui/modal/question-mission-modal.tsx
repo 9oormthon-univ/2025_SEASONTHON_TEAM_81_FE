@@ -55,7 +55,7 @@ const QuestionMissionModal = () => {
 
   //modal을 닫을때 해야할 기능 여기서 handling
   const handleCloseModal = (n: Array<number>) => {
-    let missions: string[] = [];
+    const missions: string[] = [];
     missions.push('START');
 
     n.map((value) => {
