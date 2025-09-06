@@ -10,7 +10,7 @@ const KakaoLogin = () => {
       alt="kakao login"
       width={300}
       height={45}
-      onClick={() => signIn('kakao', { callbackUrl: '/home' })}
+      onClick={() => signIn('kakao', { callbackUrl: '/onboarding' })}
     />
   );
 };

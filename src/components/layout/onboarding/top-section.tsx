@@ -40,7 +40,7 @@ const TopSection = ({ status }: TopSectionProps) => {
   const TopsectionTitle = TitleList[status as keyof typeof TitleList];
 
   return (
-    <div className="w-full pt-13">
+    <div className="w-full z-1 pt-13">
       {status === 5 ? (
         <p className="pb-2 body3 text-center text-[#888888]">
           이제 마지막이에요!
