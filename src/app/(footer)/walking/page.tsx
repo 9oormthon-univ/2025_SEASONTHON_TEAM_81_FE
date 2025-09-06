@@ -112,6 +112,8 @@ const WalkingPage = () => {
   const [location, setLocation] = useState<string>('');
   const [progress, setProgress] = useState<number>(0);
   const [status, setStatus] = useState<number>(0);
+  const [start, setStart] = useState<boolean>(false);
+  const [end, setEnd] = useState<boolean>(false);
 
   const { walkTime, missions } = useWalkingStore();
   const { openModal } = useModalStore();
@@ -150,6 +152,7 @@ const WalkingPage = () => {
 
   useEffect(() => {
     setStatus(calculStatus());
+    if (progress === 100) setEnd(true);
   }, [progress]);
 
   //타이머가 변함을 useState로 progress로 저장
@@ -159,6 +162,8 @@ const WalkingPage = () => {
 
   //activate가 변함을 감지하여 타이머 시작/멈춤
   useEffect(() => {
+    console.log('activate', activate);
+    setStart(true);
     handleRunning(activate);
   }, [activate]);
 
@@ -210,7 +215,11 @@ const WalkingPage = () => {
       <AppHeader content={<HeaderContent location={location} />} />
       <TopBar process={progress} />
       <ResultLayout state={progress === 100} />
-      <NaverMap activate={activate} />
+      <NaverMap
+        activate={activate}
+        start={start}
+        end={end}
+      />
       <div className="px-4 pt-6 pb-4 rounded-t-lg absolute bottom-0 bg-white w-full">
         <HealingContent
           status={calculStatus()}

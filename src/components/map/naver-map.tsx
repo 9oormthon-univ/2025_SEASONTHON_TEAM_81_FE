@@ -6,7 +6,15 @@ import Script from 'next/script';
 import { useEffect, useRef, useState } from 'react';
 import PolyLine from './poly-line';
 
-const NaverMap = ({ activate }: { activate: boolean }) => {
+const NaverMap = ({
+  activate,
+  start,
+  end,
+}: {
+  activate: boolean;
+  start: boolean;
+  end: boolean;
+}) => {
   const { location } = useWatchLocation({ options: geolocationOptions });
 
   const [usercoords, setUserCoords] = useState<{ lat: number; lng: number }>({
@@ -23,34 +31,23 @@ const NaverMap = ({ activate }: { activate: boolean }) => {
   const endMarkerRef = useRef<naver.maps.Marker | null>(null);
 
   useEffect(() => {
-    if (activate) {
-      startMarkerRef.current = new naver.maps.Marker({
-        position: new naver.maps.LatLng(usercoords.lat, usercoords.lng),
-        map: mapRef.current!,
-        icon: {
-          url: '/icon/map_home.svg',
-          size: new naver.maps.Size(24, 24),
-          origin: new naver.maps.Point(0, 0),
-          anchor: new naver.maps.Point(12, 12),
-        },
-      });
+    console.log('useEffect 들어는 왔는데', start, end);
+    if (typeof naver === 'undefined') return;
+    if (start && !end) {
+      console.log('start true');
+      startMarkerRef.current?.setVisible(true);
+      startMarkerRef.current?.setPosition(
+        new naver.maps.LatLng(usercoords.lat, usercoords.lng)
+      );
     }
-    if (!activate && userPath.current.length > 1) {
-      endMarkerRef.current = new naver.maps.Marker({
-        position: new naver.maps.LatLng(
-          userPath.current[userPath.current.length - 1][1],
-          userPath.current[userPath.current.length - 1][0]
-        ),
-        map: mapRef.current!,
-        icon: {
-          url: '/icon/map_finish.svg',
-          size: new naver.maps.Size(24, 24),
-          origin: new naver.maps.Point(0, 0),
-          anchor: new naver.maps.Point(12, 12),
-        },
-      });
+    if (end) {
+      console.log('end true');
+      endMarkerRef.current?.setVisible(true);
+      endMarkerRef.current?.setPosition(
+        new naver.maps.LatLng(usercoords.lat, usercoords.lng)
+      );
     }
-  }, [activate]);
+  }, [start, end, activate]);
 
   //location 변화시 감지하여 usercoords변화시키기 (거리 기준을 좀 널널하게 둬서 잦은 랜더링을 방지해야하나)
   useEffect(() => {
@@ -104,6 +101,30 @@ const NaverMap = ({ activate }: { activate: boolean }) => {
     polylineRef.current = PolyLine({
       map: mapRef.current,
       path: userPath.current,
+    });
+
+    startMarkerRef.current = new naver.maps.Marker({
+      position: new naver.maps.LatLng(usercoords.lat, usercoords.lng),
+      map: mapRef.current,
+      icon: {
+        url: '/icon/map_home.svg',
+        size: new naver.maps.Size(24, 24),
+        origin: new naver.maps.Point(0, 0),
+        anchor: new naver.maps.Point(12, 12),
+      },
+      visible: false,
+    });
+
+    endMarkerRef.current = new naver.maps.Marker({
+      position: new naver.maps.LatLng(usercoords.lat, usercoords.lng),
+      map: mapRef.current,
+      icon: {
+        url: '/icon/map_finish.svg',
+        size: new naver.maps.Size(24, 24),
+        origin: new naver.maps.Point(0, 0),
+        anchor: new naver.maps.Point(12, 12),
+      },
+      visible: false,
     });
   };
 
