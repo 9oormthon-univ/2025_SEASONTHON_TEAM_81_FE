@@ -88,7 +88,7 @@ const HomePage = () => {
           console.log('Grow Point Data:', data.result);
 
           if (data) {
-            setGrowPoint(data.result.todayGrowth.todayGrowthPoint);
+            setGrowPoint(data.result.todayGrowth.growthPoint);
           }
         } catch (error) {
           console.error('Error:', error);
