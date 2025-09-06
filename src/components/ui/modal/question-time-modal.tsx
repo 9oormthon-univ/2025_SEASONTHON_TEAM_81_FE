@@ -68,7 +68,7 @@ const QuestionTimeModal = () => {
           </div>
         ) : (
           <div
-            className="flex flex-row rounded-lg pl-2 pr-6 py-[0.3rem] border border-[#8F8F8F] bg-white gap-2"
+            className="flex flex-row rounded-lg pl-2 w-full py-[0.3rem] border border-[#8F8F8F] bg-white gap-2"
             onClick={() => handleFocus(1)}
           >
             <Image

@@ -8,9 +8,9 @@ const GrowBarGraph = ({ grow }: GrowBarGraphProps) => {
   const growPercentage = Math.floor((grow / 150) * 100);
 
   return (
-    <div className="absolute bottom-0 left-[1.5rem] flex flex-col items-center justify-center">
-      <div className="">
-        <div className="relative flex flex-col items-center h-45 w-5 rounded-[1.25rem] bg-white">
+    <div className="absolute h-full bottom-0 left-[1.5rem] flex flex-col items-center justify-center">
+      <div className="h-full">
+        <div className="relative flex flex-col items-center h-full w-5 rounded-[1.25rem] bg-white">
           <div
             className="absolute bottom-0 w-[0.625rem] mb-2 max-h-41 rounded-[1.25rem] bg-gray5"
             style={{ height: `${growPercentage}%` }}
