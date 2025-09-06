@@ -174,7 +174,7 @@ const WalkingPage = () => {
       const postWalking = async () => {
         try {
           const response = await fetch(
-            'https://api.mindwalk.p-e.kr/api/missions//complete',
+            'https://api.mindwalk.p-e.kr/api/missions/complete',
             {
               method: 'POST',
               headers: {
