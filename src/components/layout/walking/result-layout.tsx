@@ -4,10 +4,10 @@ import useUserStore from '@/store/useUserStore';
 import useWalkingStore from '@/store/useWalkingStore';
 
 const ResultLayout = ({ state }: { state: boolean }) => {
-  if (!state) return null;
-
   const { walkTime } = useWalkingStore();
   const { name } = useUserStore();
+
+  if (!state) return null;
   return (
     <div className="z-1 absolute top-45 w-full flex flex-col gap-2 text-center items-center">
       <p className="body4">오늘 {name}님이 걸으신 산책로에요</p>
