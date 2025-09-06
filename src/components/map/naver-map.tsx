@@ -31,17 +31,14 @@ const NaverMap = ({
   const endMarkerRef = useRef<naver.maps.Marker | null>(null);
 
   useEffect(() => {
-    console.log('useEffect 들어는 왔는데', start, end);
     if (typeof naver === 'undefined') return;
     if (start && !end) {
-      console.log('start true');
       startMarkerRef.current?.setVisible(true);
       startMarkerRef.current?.setPosition(
         new naver.maps.LatLng(usercoords.lat, usercoords.lng)
       );
     }
     if (end) {
-      console.log('end true');
       endMarkerRef.current?.setVisible(true);
       endMarkerRef.current?.setPosition(
         new naver.maps.LatLng(usercoords.lat, usercoords.lng)
