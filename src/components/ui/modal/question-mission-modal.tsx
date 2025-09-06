@@ -60,10 +60,10 @@ const QuestionMissionModal = () => {
 
     n.map((value) => {
       if (value === 1) missions.push('감사인사');
-      else if (value === 2) missions.push('칭찬하기기');
+      else if (value === 2) missions.push('칭찬하기');
       else if (value === 3) missions.push('짧은영상');
       else if (value === 4) missions.push('색깔찾기');
-      else if (value === 5) missions.push('스트레칭칭');
+      else if (value === 5) missions.push('스트레칭');
       else if (value === 6) missions.push('리듬워킹');
     });
 

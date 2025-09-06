@@ -19,7 +19,8 @@ const QuestionTimeModal = () => {
     if (n === 1) t = 10;
     else if (n === 2) t = 15;
     else if (n === 3) t = 20;
-    else t = 30;
+    else if (n === 4) t = 30;
+    else return;
 
     setWalkTime(t * 60);
     closeModal();
@@ -209,7 +210,7 @@ const QuestionTimeModal = () => {
         </p>
         <button
           className="body4 w-full py-[0.3rem] text-white rounded-[0.3125rem] bg-[#2AB943]"
-          onClick={() => handleCloseModal(onFocus ? onFocus : 1)}
+          onClick={() => handleCloseModal(onFocus ? onFocus : 5)}
         >
           다음
         </button>
