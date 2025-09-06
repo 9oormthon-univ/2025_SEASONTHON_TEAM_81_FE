@@ -30,12 +30,19 @@ const HomePage = () => {
   return (
     <div className="w-full h-full flex flex-col">
       <div
-        className="w-full flex flex-col grow-4 pt-16 pb-4 relative"
+        className="w-full flex flex-col grow-5 pt-16 pb-4 relative"
         style={gradientStyle}
       >
         <AppHeader content={<HeaderContent />} />
         <div className="flex flex-row p-4 gap-2">
-          <div>icon</div>
+          <div className="pt-1">
+            <Image
+              src="/icon/user_green.svg"
+              alt="user"
+              width={20}
+              height={20}
+            />
+          </div>
           <div className="flex flex-col">
             <p className="t2 text-[#414141]">
               {name}님의 4번째 식물,
@@ -60,7 +67,7 @@ const HomePage = () => {
           </div>
         </div>
       </div>
-      <div className="px-4 pt-3 grow-5 flex flex-col gap-4 bg-blue-100">
+      <div className="px-4 pt-3 grow-4 flex flex-col gap-4 bg-blue-100">
         <p className="t3">{name}님, 오늘은 가볍게 걸어볼까요?</p>
         <HomeWalkingSection />
       </div>

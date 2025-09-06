@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import './globals.css';
 import AuthSessionProvider from '@/components/provider/session-provider';
+import GlobalModal from '@/components/ui/modal/global-modal';
 
 export const metadata: Metadata = {
   title: '마음 산책',
@@ -23,7 +24,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="antialiased w-full h-screen">
-        <AuthSessionProvider>{children}</AuthSessionProvider>
+        <AuthSessionProvider>
+          {children}
+          <GlobalModal />
+        </AuthSessionProvider>
       </body>
     </html>
   );
