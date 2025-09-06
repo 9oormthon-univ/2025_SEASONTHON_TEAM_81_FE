@@ -3,6 +3,8 @@
 import AppHeader from '@/components/layout/app-header';
 import HomeWalkingSection from '@/components/layout/home/home-walking-section';
 import GrowBarGraph from '@/components/ui/grow-bar-graph';
+import QuestionTimeModal from '@/components/ui/modal/question-time-modal';
+import useModalStore from '@/store/useModalStore';
 import useUserStore from '@/store/useUserStore';
 import Image from 'next/image';
 
@@ -26,6 +28,7 @@ const HomePage = () => {
   };
 
   const { name } = useUserStore();
+  const { openModal } = useModalStore();
 
   return (
     <div className="w-full h-full flex flex-col">
@@ -35,7 +38,7 @@ const HomePage = () => {
       >
         <AppHeader content={<HeaderContent />} />
         <div className="flex flex-row p-4 gap-2">
-          <div>icon</div>
+          <div onClick={() => openModal(<QuestionTimeModal />)}>icon</div>
           <div className="flex flex-col">
             <p className="t2 text-[#414141]">
               {name}님의 4번째 식물,
