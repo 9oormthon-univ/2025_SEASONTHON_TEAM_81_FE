@@ -69,7 +69,7 @@ const NaverMap = ({
       );
     }
 
-    if (activate && polylineRef.current) {
+    if (activate && polylineRef.current && !end) {
       userPath.current = [
         ...userPath.current,
         [usercoords.lng, usercoords.lat],
