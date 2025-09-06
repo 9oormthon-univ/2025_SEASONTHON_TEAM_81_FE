@@ -2,9 +2,13 @@
 
 import AppHeader from '@/components/layout/app-header';
 import HealingContent from '@/components/layout/walking/healing-content';
+import ResultLayout from '@/components/layout/walking/result-layout';
 import TopBar from '@/components/layout/walking/top-bar';
 import NaverMap from '@/components/map/naver-map';
+import NiceModal from '@/components/ui/modal/nice-modal';
+import StretchingModal from '@/components/ui/modal/stretching-modal';
 import { useTimer } from '@/hooks/useTimer';
+import useModalStore from '@/store/useModalStore';
 import useWalkingStore from '@/store/useWalkingStore';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -55,7 +59,7 @@ const StartButton = ({
 }) => {
   return (
     <button
-      className="px-16 py-4 flex-grow rounded-lg bg-primary text-white text-center body5"
+      className="py-4 flex-grow rounded-lg bg-primary text-white text-center body5"
       onClick={onClick}
     >
       <div className="flex flex-row gap-2 justify-center">
@@ -107,11 +111,13 @@ const WalkingPage = () => {
   );
   const [location, setLocation] = useState<string>('');
   const [progress, setProgress] = useState<number>(0);
+  const [status, setStatus] = useState<number>(0);
 
   const { walkTime, missions } = useWalkingStore();
+  const { openModal } = useModalStore();
 
   //지나간 시간을 초단위로, 뒤 props에는 시간이 지났을때 실행할 함수
-  const { timeLeft, setIsRunning } = useTimer(walkTime, () => {
+  const { timeLeft, setIsRunning } = useTimer(20, () => {
     console.log('타이머 종료');
     return;
   });
@@ -127,9 +133,28 @@ const WalkingPage = () => {
     return completedMissions;
   };
 
+  //status 가 변하면 misson을 띄움
+  useEffect(() => {
+    if (status === 0 || status === missions.length - 1) return;
+    const mission = missions[status];
+
+    //산책끝 처리
+    if (status === mission.length - 1) return;
+
+    if (mission === '스트레칭') {
+      openModal(<StretchingModal />);
+    } else if (mission === '칭찬하기') {
+      openModal(<NiceModal />);
+    }
+  }, [status]);
+
+  useEffect(() => {
+    setStatus(calculStatus());
+  }, [progress]);
+
   //타이머가 변함을 useState로 progress로 저장
   useEffect(() => {
-    setProgress(Math.floor((timeLeft / walkTime) * 100));
+    setProgress(Math.floor((timeLeft / 20) * 100));
   }, [timeLeft]);
 
   //activate가 변함을 감지하여 타이머 시작/멈춤
@@ -184,6 +209,7 @@ const WalkingPage = () => {
     <div className="w-full h-full flex flex-col relative">
       <AppHeader content={<HeaderContent location={location} />} />
       <TopBar process={progress} />
+      <ResultLayout state={progress === 100} />
       <NaverMap activate={activate} />
       <div className="px-4 pt-6 pb-4 rounded-t-lg absolute bottom-0 bg-white w-full">
         <HealingContent

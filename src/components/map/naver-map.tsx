@@ -19,6 +19,39 @@ const NaverMap = ({ activate }: { activate: boolean }) => {
   const markerRef = useRef<naver.maps.Marker | null>(null);
   const polylineRef = useRef<naver.maps.Polyline | null>(null);
 
+  const startMarkerRef = useRef<naver.maps.Marker | null>(null);
+  const endMarkerRef = useRef<naver.maps.Marker | null>(null);
+
+  useEffect(() => {
+    if (activate) {
+      startMarkerRef.current = new naver.maps.Marker({
+        position: new naver.maps.LatLng(usercoords.lat, usercoords.lng),
+        map: mapRef.current!,
+        icon: {
+          url: '/icon/map_home.svg',
+          size: new naver.maps.Size(24, 24),
+          origin: new naver.maps.Point(0, 0),
+          anchor: new naver.maps.Point(12, 12),
+        },
+      });
+    }
+    if (!activate && userPath.current.length > 1) {
+      endMarkerRef.current = new naver.maps.Marker({
+        position: new naver.maps.LatLng(
+          userPath.current[userPath.current.length - 1][1],
+          userPath.current[userPath.current.length - 1][0]
+        ),
+        map: mapRef.current!,
+        icon: {
+          url: '/icon/map_finish.svg',
+          size: new naver.maps.Size(24, 24),
+          origin: new naver.maps.Point(0, 0),
+          anchor: new naver.maps.Point(12, 12),
+        },
+      });
+    }
+  }, [activate]);
+
   //location 변화시 감지하여 usercoords변화시키기 (거리 기준을 좀 널널하게 둬서 잦은 랜더링을 방지해야하나)
   useEffect(() => {
     if (location) {
