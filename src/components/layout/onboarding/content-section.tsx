@@ -1,6 +1,7 @@
 'use client';
 
 import useUserStore from '@/store/useUserStore';
+import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
 interface ContentSectionProps {
@@ -29,7 +30,7 @@ const ContentSection = ({ status }: ContentSectionProps) => {
     ),
     2: (
       <div className="h-full flex flex-col">
-        <div className="flex-grow" />
+        <div className="flex-grow"></div>
         <p className="text-[#707070] body3 pb-9">
           작은 걸음이 쌓이면 내 정원에서
           <br />
@@ -39,7 +40,48 @@ const ContentSection = ({ status }: ContentSectionProps) => {
     ),
     3: (
       <div className="h-full flex flex-col">
-        <div className="flex-grow" />
+        <div className="flex-grow flex flex-col items-center mt-6 gap-4">
+          <p className="label1 text-gray5">마음식물 성장 변화</p>
+          <div className="w-full grid grid-cols-3 px-10">
+            <div className="flex flex-col items-center">
+              <Image
+                src="seed.svg"
+                alt="seed"
+                width={100}
+                height={100}
+                className="rounded-2xl"
+              />
+              <p className="text-gray4 label2">씨앗</p>
+            </div>
+            <div className="flex flex-col items-center">
+              <Image
+                src="plant.svg"
+                alt="plant"
+                width={100}
+                height={100}
+                className="rounded-2xl"
+              />
+              <p className="text-gray4 label2">새싹</p>
+            </div>
+            <div className="flex flex-col items-center">
+              <Image
+                src="flower.svg"
+                alt="flower"
+                width={100}
+                height={100}
+                className="rounded-2xl"
+              />
+              <p className="text-gray4 label2">꽃</p>
+            </div>
+          </div>
+          <Image
+            src="onboarding_garden.svg"
+            alt="graden"
+            width={248}
+            height={170}
+            className="rounded-2xl mt-14"
+          />
+        </div>
         <p className="text-[#707070] body3 pb-9">
           나의 식물 성장을 눈으로 보고,
           <br />
@@ -48,8 +90,56 @@ const ContentSection = ({ status }: ContentSectionProps) => {
       </div>
     ),
     4: (
-      <div>
-        <></>
+      <div className="h-full px-8 grid grid-cols-2">
+        <div className="flex w-full justify-center">
+          <Image
+            src="healing1.svg"
+            alt="healing"
+            width={129}
+            height={56}
+          />
+        </div>
+        <div className="flex w-full justify-center">
+          <Image
+            src="healing2.svg"
+            alt="healing"
+            width={129}
+            height={53}
+          />
+        </div>
+
+        <div className="flex w-full justify-center">
+          <Image
+            src="healing3.svg"
+            alt="healing"
+            width={129}
+            height={142}
+          />
+        </div>
+        <div className="flex w-full justify-center">
+          <Image
+            src="healing4.svg"
+            alt="healing"
+            width={129}
+            height={142}
+          />
+        </div>
+        <div className="flex w-full justify-center">
+          <Image
+            src="healing5.svg"
+            alt="healing"
+            width={129}
+            height={142}
+          />
+        </div>
+        <div className="flex w-full justify-center">
+          <Image
+            src="healing6.svg"
+            alt="healing"
+            width={129}
+            height={142}
+          />
+        </div>
       </div>
     ),
     5: (
@@ -70,7 +160,7 @@ const ContentSection = ({ status }: ContentSectionProps) => {
 
   const content = ContentList[status as keyof typeof ContentList];
 
-  return <div className="w-full h-full text-center">{content}</div>;
+  return <div className="w-full h-full z-1 text-center">{content}</div>;
 };
 
 export default ContentSection;

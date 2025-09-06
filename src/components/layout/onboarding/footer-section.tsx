@@ -15,7 +15,7 @@ const FooterSection = ({ status, setStatus }: FooterSectionProps) => {
   return (
     <>
       {status === 5 ? (
-        <div className="w-full px-8 flex flex-col">
+        <div className="w-full px-8 flex flex-col z-1">
           <p className="pb-3 label3 text-center text-[#888888]">
             나를 위한 작은 발걸음, 지금 시작해봐요🚶‍♀️
           </p>
@@ -29,7 +29,7 @@ const FooterSection = ({ status, setStatus }: FooterSectionProps) => {
           </Link>
         </div>
       ) : (
-        <div className="w-full h-auto px-8 flex flex-row justify-center gap-4">
+        <div className="w-full h-auto px-8 flex flex-row justify-center gap-4 z-1">
           <button
             className="h-12 body5 px-4 py-3 text-[#8f8f8f] bg-[#d9d9d9] rounded-lg text-center"
             onClick={() => setStatus(status - 1)}
