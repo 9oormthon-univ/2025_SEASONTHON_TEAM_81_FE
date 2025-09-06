@@ -1,9 +1,14 @@
+'use client';
+
 import WalkingStatus from '@/components/ui/walking-status';
+import useWalkingStore from '@/store/useWalkingStore';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 
 const HomeWalkingSection = () => {
+  const { walkTime } = useWalkingStore();
+
   return (
     <div className="w-full px-4 py-[0.625rem] rounded-[1.25rem] bg-[#f0f0f0] flex flex-col gap-4 items-start">
       <div className="flex flex-row w-full justify-between items-center pt-2">
@@ -15,7 +20,9 @@ const HomeWalkingSection = () => {
             width={12}
             height={16}
           />
-          <p className="label7 text-[#ffffff] text-base font-medium">15분</p>
+          <p className="label7 text-[#ffffff] text-base font-medium">
+            {walkTime / 60}분
+          </p>
         </div>
       </div>
       <WalkingStatus missions={['START', '', '', 'FINISH']} />

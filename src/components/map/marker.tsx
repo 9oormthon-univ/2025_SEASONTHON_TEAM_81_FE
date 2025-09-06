@@ -9,10 +9,10 @@ const Marker = ({ position, map }: MarkerProps) => {
     map: map,
     //https://navermaps.github.io/maps.js.ncp/docs/naver.maps.Marker.html#~ImageIcon icon props 설명 문서
     icon: {
-      url: '',
-      size: new naver.maps.Size(24, 35),
+      url: './public/icon/user_gps.png',
+      size: new naver.maps.Size(47, 47),
       origin: new naver.maps.Point(0, 0),
-      anchor: new naver.maps.Point(12, 35),
+      anchor: new naver.maps.Point(23.5, 23.5),
     },
   });
 

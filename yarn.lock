@@ -3769,6 +3769,8 @@ __metadata:
     react-dom: "npm:19.1.0"
     tailwindcss: "npm:^4"
     typescript: "npm:^5"
+    zustand: "npm:^5.0.8"
+    zustand-persist: "npm:^0.4.0"
   languageName: unknown
   linkType: soft
 
@@ -5611,5 +5613,36 @@ __metadata:
   version: 0.1.0
   resolution: "yocto-queue@npm:0.1.0"
   checksum: 10c0/dceb44c28578b31641e13695d200d34ec4ab3966a5729814d5445b194933c096b7ced71494ce53a0e8820685d1d010df8b2422e5bf2cdea7e469d97ffbea306f
+  languageName: node
+  linkType: hard
+
+"zustand-persist@npm:^0.4.0":
+  version: 0.4.0
+  resolution: "zustand-persist@npm:0.4.0"
+  peerDependencies:
+    react: ">=16.8.0"
+    zustand: ">=3.6.3"
+  checksum: 10c0/7f997462267fff65acf0e4d9054664232535332bd8bbb041812708c921fd0ff09d5dbe4fc6744baae91a4935c3e18fc0f4344a67d30008cd2778ff9d8d4bd19c
+  languageName: node
+  linkType: hard
+
+"zustand@npm:^5.0.8":
+  version: 5.0.8
+  resolution: "zustand@npm:5.0.8"
+  peerDependencies:
+    "@types/react": ">=18.0.0"
+    immer: ">=9.0.6"
+    react: ">=18.0.0"
+    use-sync-external-store: ">=1.2.0"
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
+    immer:
+      optional: true
+    react:
+      optional: true
+    use-sync-external-store:
+      optional: true
+  checksum: 10c0/e865a6f7f1c0e03571701db5904151aaa7acefd6f85541a117085e129bf16e8f60b11f8cc82f277472de5c7ad5dcb201e1b0a89035ea0b40c9d9aab3cd24c8ad
   languageName: node
   linkType: hard

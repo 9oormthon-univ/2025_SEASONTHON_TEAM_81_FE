@@ -1,11 +1,17 @@
-import Link from 'next/link';
+'use client';
 
+import useUserStore from '@/store/useUserStore';
+import Link from 'next/link';
 interface FooterSectionProps {
   status: number;
   setStatus: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const FooterSection = ({ status, setStatus }: FooterSectionProps) => {
+  const { name } = useUserStore();
+
+  const submitName = () => {};
+
   return (
     <>
       {status === 5 ? (
@@ -13,7 +19,10 @@ const FooterSection = ({ status, setStatus }: FooterSectionProps) => {
           <p className="pb-3 label3 text-center text-[#888888]">
             나를 위한 작은 발걸음, 지금 시작해봐요🚶‍♀️
           </p>
-          <Link href="/">
+          <Link
+            href="/home"
+            onClick={submitName}
+          >
             <button className="w-full h-12 text-white bg-primary rounded-lg">
               마음산책 시작하기
             </button>
