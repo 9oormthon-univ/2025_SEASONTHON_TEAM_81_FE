@@ -5,14 +5,23 @@ import useUserStore from '@/store/useUserStore';
 import Image from 'next/image';
 import { useState } from 'react';
 import QuestionMissionModal from './question-mission-modal';
+import useWalkingStore from '@/store/useWalkingStore';
 
 const QuestionTimeModal = () => {
   const { name } = useUserStore();
+  const { setWalkTime } = useWalkingStore();
   const { openModal, closeModal } = useModalStore();
   const [onFocus, setOnFocus] = useState<number | null>(null);
 
   //modal을 닫을때 해야할 기능 여기서 handling
-  const handleCloseModal = () => {
+  const handleCloseModal = (n: number) => {
+    let t;
+    if (n === 1) t = 10;
+    else if (n === 2) t = 15;
+    else if (n === 3) t = 20;
+    else t = 30;
+
+    setWalkTime(t * 60);
     closeModal();
     openModal(<QuestionMissionModal />);
     return;
@@ -200,7 +209,7 @@ const QuestionTimeModal = () => {
         </p>
         <button
           className="body4 w-full py-[0.3rem] text-white rounded-[0.3125rem] bg-[#2AB943]"
-          onClick={handleCloseModal}
+          onClick={() => handleCloseModal(onFocus ? onFocus : 1)}
         >
           다음
         </button>

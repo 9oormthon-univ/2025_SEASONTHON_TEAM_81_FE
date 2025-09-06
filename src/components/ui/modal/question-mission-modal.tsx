@@ -2,6 +2,7 @@
 
 import useModalStore from '@/store/useModalStore';
 import useUserStore from '@/store/useUserStore';
+import useWalkingStore from '@/store/useWalkingStore';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
@@ -49,20 +50,35 @@ const HealingContent = ({
 const QuestionMissionModal = () => {
   const { name } = useUserStore();
   const { closeModal } = useModalStore();
-  const [onFocus, setOnFocus] = useState<number | null>(null);
+  const { setMissions } = useWalkingStore();
+  const [onFocus, setOnFocus] = useState<Array<number> | null>(null);
 
   //modal을 닫을때 해야할 기능 여기서 handling
-  const handleCloseModal = () => {
+  const handleCloseModal = (n: Array<number>) => {
+    let missions: string[] = [];
+    missions.push('START');
+
+    n.map((value) => {
+      if (value === 1) missions.push('감사인사');
+      else if (value === 2) missions.push('칭찬하기기');
+      else if (value === 3) missions.push('짧은영상');
+      else if (value === 4) missions.push('색깔찾기');
+      else if (value === 5) missions.push('스트레칭칭');
+      else if (value === 6) missions.push('리듬워킹');
+    });
+
+    setMissions([...missions, 'FINISH']);
     closeModal();
     return;
   };
 
   const handleFocus = (value: number) => {
-    if (onFocus === value) {
-      setOnFocus(null);
+    if (onFocus?.includes(value)) {
+      setOnFocus(onFocus.filter((v) => v !== value));
       return;
     }
-    setOnFocus(value);
+    if (onFocus?.length === 3) return;
+    setOnFocus((prev) => (prev ? [...prev, value] : [value]));
   };
 
   return (
@@ -76,32 +92,32 @@ const QuestionMissionModal = () => {
       <div className="grid grid-cols-2 gap-4">
         <HealingContent
           text="감사 인사"
-          focus={onFocus === 1}
+          focus={onFocus?.includes(1) ? true : false}
           onClick={() => handleFocus(1)}
         />
         <HealingContent
           text="칭찬하기"
-          focus={onFocus === 2}
+          focus={onFocus?.includes(2) ? true : false}
           onClick={() => handleFocus(2)}
         />
         <HealingContent
           text="짧은 명상"
-          focus={onFocus === 3}
+          focus={onFocus?.includes(3) ? true : false}
           onClick={() => handleFocus(3)}
         />
         <HealingContent
           text="색깔 찾기"
-          focus={onFocus === 4}
+          focus={onFocus?.includes(4) ? true : false}
           onClick={() => handleFocus(4)}
         />
         <HealingContent
           text="스트레칭"
-          focus={onFocus === 5}
+          focus={onFocus?.includes(5) ? true : false}
           onClick={() => handleFocus(5)}
         />
         <HealingContent
           text="리듬워킹"
-          focus={onFocus === 6}
+          focus={onFocus?.includes(6) ? true : false}
           onClick={() => handleFocus(6)}
         />
       </div>
@@ -112,7 +128,7 @@ const QuestionMissionModal = () => {
         <Link
           href="/walking"
           className="text-center body4 w-full py-[0.3rem] text-white rounded-[0.3125rem] bg-[#2AB943]"
-          onClick={handleCloseModal}
+          onClick={() => handleCloseModal(onFocus ? onFocus : [])}
         >
           산책 시작하기
         </Link>
