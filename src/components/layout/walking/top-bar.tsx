@@ -1,6 +1,6 @@
 const TopBar = ({ process }: { process: number }) => {
   const title = () => {
-    if (titleNumber() === 100) return '오늘도 끝까지 해냈어요. 정말 멋져요.';
+    if (titleNumber() === 100) return '오늘도 끝까지 해냈어요. 정말 멋져요.⭐';
     else if (titleNumber() === 80)
       return '여기까지 잘 왔어요. 조금만 더 이어가요.';
     else if (titleNumber() === 60)
